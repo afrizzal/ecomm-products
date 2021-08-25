@@ -14,10 +14,11 @@ class CreateLessons extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->unsignedBigInteger('lesson_id');
+            $table->id();
             $table->string('name');
             $table->string('video');
-            $table->foreign('chapter_id')->references('id')->on('chapters');
+            $table->unsignedBigInteger('chapters_id');
+            $table->foreign('chapters_id')->references('id')->on('chapters');
             $table->timestamps();
         });
     }

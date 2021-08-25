@@ -14,7 +14,7 @@ class CreateCourses extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->unsignedBigInteger('course_id');
+            $table->id();
             $table->string('name');
             $table->boolean('certificate');
             $table->string('thumbnail')->nullable();
@@ -23,6 +23,7 @@ class CreateCourses extends Migration
             $table->integer('price')->default(0)->nullable();
             $table->enum('level', ['all-level', 'beginner', 'intermediate', 'advance']);
             $table->longText('description')->nullable();
+            $table->unsignedBigInteger('mentor_id');
             $table->foreign('mentor_id')->references('id')->on('mentors');
             $table->timestamps();
         });

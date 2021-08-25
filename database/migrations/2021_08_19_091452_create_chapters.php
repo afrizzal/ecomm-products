@@ -14,9 +14,10 @@ class CreateChapters extends Migration
     public function up()
     {
         Schema::create('chapters', function (Blueprint $table) {
-            $table->unsignedBigInteger('chapter_id');
+            $table->id();
             $table->string('name');
-            $table->foreignId('course_id')->constrained('courses');
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->timestamps();
         });
     }
